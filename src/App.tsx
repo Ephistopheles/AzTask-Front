@@ -4,6 +4,7 @@ import { ConfigProvider } from "antd";
 import esES from "antd/es/locale/es_ES";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import MainLayout from "./layout/mainlayout";
+import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 import "./App.css";
 
 const App: React.FC = () => {
@@ -13,7 +14,7 @@ const App: React.FC = () => {
         <BrowserRouter>
           <ErrorBoundary>
             <Routes>
-              <Route path="/*" element={<Navigate to={"/home"} />} />
+              <Route path="*" element={<NotFoundPage />} />
               <Route path="/" element={<Navigate to="/home" />} />
               <Route path="/home" element={<MainLayout />} />
             </Routes>
