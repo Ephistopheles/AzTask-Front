@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import esES from "antd/es/locale/es_ES";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
-import MainLayout from "./layout/mainlayout";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
+import MainLayout from "./layout/MainLayout";
 import "./App.css";
 
 const App: React.FC = () => {
