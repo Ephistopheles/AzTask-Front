@@ -1,9 +1,22 @@
-.class-l {
+.layout-style {
+  min-height: 100vh;
+}
 
-    background-color: black;
+.sider-style {
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  width: 200px;
+}
 
-    .class-s {
-        margin: 25px;
-    }
+.row-search-container {
+  padding: 16px;
+}
 
+.col-search-input {
+  width: 100%;
+}
+
+.divider-search {
+  margin: 0;
 }
