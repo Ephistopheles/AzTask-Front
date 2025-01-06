@@ -10,11 +10,11 @@
   width: 200px;
 }
 
-.row-search-container {
+.row-search-container, .row-list-container {
   padding: 16px;
 }
 
-.col-search-input {
+.col-search-autocomplete {
   width: 100%;
 }
 
