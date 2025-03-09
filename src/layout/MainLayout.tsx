@@ -1,6 +1,14 @@
 import React, { useState } from "react";
-import { AutoComplete, Button, Col, Input, Layout, List, Row } from "antd";
-import logo from "../assets/img/logo.png";
+import {
+  AutoComplete,
+  Button,
+  Col,
+  Form,
+  Input,
+  Layout,
+  List,
+  Row,
+} from "antd";
 import {
   HomeOutlined,
   QuestionCircleOutlined,
@@ -8,6 +16,9 @@ import {
   EllipsisOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
+import logo from "../assets/img/logo.png";
+import { TaskFormValues } from "../types/types";
+import AddTaskModal from "../components/AddTaskModal/AddTaskModal";
 
 const { Header, Sider, Content } = Layout;
 
@@ -33,6 +44,8 @@ const listTask = [
 const MainLayout: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [options, setOptions] = useState<{ value: string }[]>([]);
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+  const [form] = Form.useForm<TaskFormValues>();
 
   const handleSearch = (value: string) => {
     const filteredOptions = fruits
@@ -41,8 +54,25 @@ const MainLayout: React.FC = () => {
     setOptions(filteredOptions);
   };
 
-  const handleOnClickOptions = (e: React.MouseEvent) => {
+  const handleOnClickOptions = (e: React.MouseEvent<HTMLButtonElement>) =>
     e.stopPropagation();
+
+  const handleShowModal: () => void = () => setIsModalVisible(true);
+
+  const handleOkModal: () => void = async () => {
+    try {
+      const values = await form.validateFields();
+      console.log("Form Values:", values);
+      form.resetFields();
+      setIsModalVisible(false);
+    } catch (error) {
+      console.error("Errores de validación:", error);
+    }
+  };
+
+  const handleCancelModal: () => void = () => {
+    form.resetFields();
+    setIsModalVisible(false);
   };
 
   return (
@@ -86,10 +116,11 @@ const MainLayout: React.FC = () => {
           <Row className="row-button-container">
             <Col span={24}>
               <Button
+                icon={<PlusOutlined />}
                 className="col-button-task"
                 type="primary"
                 shape="circle"
-                icon={<PlusOutlined />}
+                onClick={handleShowModal}
               />
             </Col>
           </Row>
@@ -139,6 +170,12 @@ const MainLayout: React.FC = () => {
           </Content>
         </Layout>
       </Layout>
+      <AddTaskModal
+        visible={isModalVisible}
+        onOk={handleOkModal}
+        onCancel={handleCancelModal}
+        form={form}
+      />
     </>
   );
 };

@@ -14,7 +14,7 @@ const ErrorBoundary: React.FC<{ children: React.ReactNode }> = ({
   const [error, setError] = useState<Error | null>(null);
   const navigate: NavigateFunction = useNavigate();
 
-  const resetError = () => {
+  const resetError: () => void = () => {
     setError(null);
     navigate("/home");
   };

@@ -5,7 +5,7 @@ import { Result, Button } from "antd";
 const NotFoundPage: React.FC = () => {
   const navigate: NavigateFunction = useNavigate();
 
-  const handleBackHome = () => navigate("/home");
+  const handleBackHome: () => void = () => navigate("/home");
 
   return (
     <>

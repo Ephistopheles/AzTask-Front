@@ -97,3 +97,19 @@
   padding: 16px;
   background-color: #ffffff;
 }
+
+/* Add task modal styles */
+
+.modal-title {
+  text-align: center;
+  margin: 0;
+}
+
+.modal-footer {
+  justify-content: center;
+  width: 100%;
+}
+
+.modal-form-dp {
+  width: 100%;
+}
