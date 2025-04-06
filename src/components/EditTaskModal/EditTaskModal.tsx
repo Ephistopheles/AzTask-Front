@@ -1,34 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { EditTaskModalProps, OptionFormType } from "../../types/types";
 import {
   Button,
-  Modal,
-  Space,
-  Form,
-  Input,
-  Row,
   Col,
   DatePicker,
-  Select,
   Divider,
-  Typography,
+  Form,
+  Input,
+  Modal,
   notification,
+  Row,
+  Select,
+  Space,
+  Typography,
 } from "antd";
-import {
-  AddTaskModalProps,
-  TaskFormRules,
-  OptionFormType,
-} from "../../types/types";
 import { getTasksEffort } from "../../api/ParamsService/ParamsService";
 
-const rules: TaskFormRules = {
-  title: [{ required: true, message: "El título es requerido" }],
-  estimatedCompletionDate: [
-    { required: true, message: "La fecha es requerida" },
-  ],
-  effort: [{ required: true, message: "El esfuerzo es requerido" }],
-};
-
-const AddTaskModal: React.FC<AddTaskModalProps> = ({
+const EditTaskModal: React.FC<EditTaskModalProps> = ({
   visible,
   onOk,
   onCancel,
@@ -59,16 +47,16 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
       <Modal
         title={
           <Typography.Title level={4} className="modal-title">
-            Agregar nueva tarea
+            Editar tarea
           </Typography.Title>
         }
-        closable={false}
         open={visible}
+        onCancel={onCancel}
         footer={
           <Space className="modal-footer">
             <Button onClick={onCancel}>Cancelar</Button>
             <Button type="primary" onClick={onOk}>
-              Agregar
+              Editar
             </Button>
           </Space>
         }
@@ -80,7 +68,6 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
               <Form.Item
                 label="Fecha de finalización"
                 name="estimatedCompletionDate"
-                rules={rules["estimatedCompletionDate"]}
               >
                 <DatePicker format="DD/MM/YYYY" className="modal-form-dp" />
               </Form.Item>
@@ -88,12 +75,12 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
           </Row>
           <Row gutter={16}>
             <Col span={12}>
-              <Form.Item label="Titulo" name="title" rules={rules["title"]}>
+              <Form.Item label="Titulo" name="title">
                 <Input placeholder="Titulo de la tarea" />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label="Esfuerzo" name="effort" rules={rules["effort"]}>
+              <Form.Item label="Esfuerzo" name="effort">
                 <Select
                   placeholder="Esfuerzo de la tarea"
                   allowClear
@@ -118,4 +105,4 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
   );
 };
 
-export default AddTaskModal;
+export default EditTaskModal;

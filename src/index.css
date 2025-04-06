@@ -26,3 +26,19 @@ body {
 p {
   font-family: "Nunito", sans-serif;
 }
+
+.ant-notification-notice {
+  background-color: #000000 !important;
+  border: none !important;
+  border-radius: 7px;
+}
+
+.ant-notification-notice-message {
+  font-weight: bold;
+  color: #ffffff !important;  
+}
+
+.ant-notification-notice-description {
+  color: #ffffff !important;
+}
+
